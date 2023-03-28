@@ -33,4 +33,4 @@ python main.py
 Contributions to the project are welcome! If you have a feature or improvement to suggest, simply open an issue or pull request on GitHub.
 
 ## License
-This bot is released under the MIT License. See the LICENSE file for details.
+This bot is released under the MIT License. See the [LICENSE.md](LICENSE.md) file for details.
