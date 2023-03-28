@@ -2,7 +2,7 @@
 
 <p align="center">
 <a href="https://github.com/prajesh8484/pythonbot"><img src="https://img.shields.io/github/languages/code-size/prajesh8484/pythonbot"></a>
-
+<a href="https://github.com/prajesh8484/pythonbot/blob/3229b471a5772099e285e18282439e8b061ae9ba/LICENSE.md"><img src="https://img.shields.io/github/license/prajesh8484/pythonbot"></a>
 </p>
 
 ## How to setup
