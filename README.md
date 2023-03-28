@@ -29,3 +29,8 @@ After that you can start it with
 ```
 python main.py
 ```
+## Contributing
+Contributions to the project are welcome! If you have a feature or improvement to suggest, simply open an issue or pull request on GitHub.
+
+## License
+This bot is released under the MIT License. See the LICENSE file for details.
