@@ -23,7 +23,7 @@ This is a general purpose Discord bot built with [nextcord](https://github.com/n
   page https://discord.com/developers/applications/YOUR_APPLICATION_ID_HERE/bot)
 
 * Replace:
-   * `YOUR_CHANNEL_ID` to channel id,[here](https://support.discord.com/hc/en-us/articles/206346498-Where-can-I-find-my-User-Server-Message-ID-) how to get channel id
+   * `YOUR_CHANNEL_ID` to channel id, [here](https://support.discord.com/hc/en-us/articles/206346498-Where-can-I-find-my-User-Server-Message-ID-) how to get channel id
    * `YOUR_BOT_TOKEN` to bot token 
 ## Starting the bot
 
