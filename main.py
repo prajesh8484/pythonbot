@@ -6,6 +6,7 @@ import datetime
 import asyncio
 import pytz
 import random
+import time
 
 
 
@@ -52,6 +53,22 @@ async def ping(interaction: nextcord.Interaction):
     databasepng = random.randint(100, 130)
     await interaction.response.send_message(f"Pong! :ping_pong:\nAPI Ping: `{apipng}ms`\nDatabase Ping: `{databasepng}ms`")
 
+@bot.slash_command(description="rolle's dice")
+async def rolldice(interaction: nextcord.Interaction):
+    rolled = random.randint(1, 6)
+    await interaction.send(f"*clatter* you rolled dice and you got {rolled}!") 
+
+@bot.slash_command(description="ban a user")
+async def ban(ctx: commands.Context, user: nextcord.Member, reason: str="No reason provided"):
+    await ctx.guild.ban(user, reason=reason)
+    await ctx.send(f"{user} has been banned from the server! Reason: {reason}!")  
+
+@bot.slash_command(description="kick a user")
+async def kick(ctx: commands.Context, user: nextcord.Member, reason: str="No reason provided"):
+    await ctx.guild.kick(user, reason=reason)
+    await ctx.send(f"{user} has been kicked from the server! Reason: {reason}!") 
+
+        
 @bot.command()
 async def sendtochannel(ctx, text: str):
     channel = bot.get_channel(YOUR_CHANNEL_ID)
