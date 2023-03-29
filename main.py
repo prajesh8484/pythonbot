@@ -91,7 +91,7 @@ async def slap(ctx, members: commands.Greedy[nextcord.Member], *, reason='no rea
 
 @bot.slash_command(description="alright im here to help")
 async def help(interaction: nextcord.Interaction):
-    await interaction.response.send_message("**Hello I'm David Bot**\n*My commands are as follows:*\n\n`!slap !sendtochannel !codelink`\n\n*And some slash commands ;)*")
+    await interaction.response.send_message(f"**Hello I'm {bot.user}**\n*My commands are as follows:*\n\n`!slap !sendtochannel !codelink`\n\n*And some slash commands ;)*")
 
 
 async def schedule_daily_message():
