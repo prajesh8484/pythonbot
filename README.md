@@ -19,10 +19,12 @@ This is a general purpose Discord bot built with [nextcord](https://github.com/n
 * Get your bot token
 * Invite your bot on servers using the following invite:
   https://discord.com/oauth2/authorize?&client_id=YOUR_APPLICATION_ID_HERE&scope=bot+applications.commands&permissions=PERMISSIONS (
-  Replace `YOUR_APPLICATION_ID_HERE` with the application ID and replace `PERMISSIONS` with the required permissions
-  your bot needs that it can be get at the bottom of a this
+  allow necessary permissions your bot needs that it can be get at the bottom of a this
   page https://discord.com/developers/applications/YOUR_APPLICATION_ID_HERE/bot)
 
+* Replace:
+   * `YOUR_CHANNEL_ID` to channel id,[here](https://support.discord.com/hc/en-us/articles/206346498-Where-can-I-find-my-User-Server-Message-ID-) how to get channel id
+   * `YOUR_BOT_TOKEN` to bot token 
 ## Starting the bot
 
 launch your terminal or your Command Prompt
