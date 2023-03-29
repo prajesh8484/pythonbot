@@ -48,10 +48,12 @@ async def timenow(interaction: nextcord.Interaction):
 
 
 @bot.slash_command(description="pong")
-async def ping(interaction: nextcord.Interaction):
-    apipng = random.randint(70, 148)
-    databasepng = random.randint(100, 130)
-    await interaction.response.send_message(f"Pong! :ping_pong:\nAPI Ping: `{apipng}ms`\nDatabase Ping: `{databasepng}ms`")
+async def ping(ctx):
+    start_time = time.monotonic()
+    message = await ctx.send("Pong!")
+    end_time = time.monotonic()
+    await message.edit(content=f"Pong! Response time: {round((end_time - start_time) * 1000)} ms")
+     
 
 @bot.slash_command(description="rolle's dice")
 async def rolldice(interaction: nextcord.Interaction):
@@ -68,7 +70,15 @@ async def kick(ctx: commands.Context, user: nextcord.Member, reason: str="No rea
     await ctx.guild.kick(user, reason=reason)
     await ctx.send(f"{user} has been kicked from the server! Reason: {reason}!") 
 
-        
+     
+@bot.slash_command(description="Retrieves the avatar of a user.")
+async def avatar(ctx, user: nextcord.Member = None):
+    user = user or ctx.author
+    avatar_url = user.avatar.url
+    await ctx.send(avatar_url)
+
+
+     
 @bot.command()
 async def sendtochannel(ctx, text: str):
     channel = bot.get_channel(YOUR_CHANNEL_ID)
