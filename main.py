@@ -134,4 +134,4 @@ async def userinfo(ctx: nextcord.InteractionType, user: nextcord.Member = None):
     await ctx.send(embed=embed)
 
           
-bot.run("YOUR_BOT_TOKEN")
+bot.run("YOUR_BOT_TOKEN") # replace with your bot's token
