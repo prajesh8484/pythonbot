@@ -14,7 +14,7 @@ This is a general purpose Discord bot built with [nextcord](https://github.com/n
 
 * Clone/Download the repository
     * To clone it and get the updates you can use the command
-      `git clone`
+      `git clone https://github.com/prajesh8484/pythonbot`
 * Create a discord bot [here](https://discord.com/developers/applications)
 * Get your bot token
 * Invite your bot on servers using the following invite:
