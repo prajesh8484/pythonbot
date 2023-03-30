@@ -2,6 +2,7 @@
 
 <p align="center">
 <a href="https://github.com/prajesh8484/pythonbot"><img src="https://img.shields.io/github/languages/code-size/prajesh8484/pythonbot"></a>
+<a herf="https://www.python.org/downloads/release/python-3106/"><img src="https://img.shields.io/badge/Python-3.10.6-blue"></a>
 <a href="https://github.com/prajesh8484/pythonbot"><img src="https://img.shields.io/github/downloads/prajesh8484/pythonbot/total"></a>
 <a href="https://github.com/prajesh8484/pythonbot/commits/main"><img src="https://img.shields.io/github/last-commit/prajesh8484/pythonbot"></a>
 <a href="https://github.com/prajesh8484/pythonbot/releases/tag/release"><img src="https://img.shields.io/github/v/release/prajesh8484/pythonbot"></a>
