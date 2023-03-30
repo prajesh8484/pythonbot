@@ -94,17 +94,10 @@ async def help(interaction: nextcord.Interaction):
     await interaction.response.send_message(f"**Hello I'm {bot.user}**\n*My commands are as follows:*\n\n`!slap !sendtochannel !codelink`\n\n*And some slash commands ;)*")
 
 
-async def schedule_daily_message():
-    while True:     
-        now =  datetime.datetime.now()
-        then = now+datetime.timedelta(days-1) 
-        then.replace(hour-8, minute-0) 
-        wait_time = (then-now).total_seconds()
-        await asyncio.sleep(wait_time)
-
-        channel = bot.get_channel(YOUR_CHANNEL_ID)
-
-        await channel.send("Good Morning")
+@bot.slash_command(description="Ask a question to 8 ball")
+async def eightball(ctx, question: str):
+    responses = ["It is certain.", "It is decidedly so.", "Without a doubt.", "Yes - definitely.", "You may rely on it.", "As I see it, yes.", "Most likely.", "Outlook good.", "Yes.", "Signs point to yes.", "Reply hazy, try again.", "Ask again later.", "Better not tell you now.", "Cannot predict now.", "Concentrate and ask again.", "Don't count on it.", "Outlook not so good.", "My sources say no.", "Very doubtful."]
+    await ctx.send(random.choice(responses))
 
 @bot.slash_command(name="userinfo", description="Get detailed information about a user.")
 async def userinfo(ctx: nextcord.InteractionType, user: nextcord.Member = None):
