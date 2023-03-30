@@ -8,7 +8,7 @@
 <a href="https://github.com/prajesh8484/pythonbot/blob/3229b471a5772099e285e18282439e8b061ae9ba/LICENSE.md"><img src="https://img.shields.io/github/license/prajesh8484/pythonbot"></a>
 </p>
 
-This is a general purpose Discord bot built with [nextcord](https://github.com/nextcord/nextcord)(A Python wrapper for the Discord API). The bot is designed to be easily customizable and extendable, with a modular architecture that allows for the addition of new features and commands. 
+This is a general purpose Discord bot built with [Nextcord](https://github.com/nextcord/nextcord)(A Python wrapper for the Discord API). The bot is designed to be easily customizable and extendable, with a modular architecture that allows for the addition of new features and commands. 
 
 ## How to setup
 
