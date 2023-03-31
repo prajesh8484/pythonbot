@@ -61,12 +61,12 @@ async def rolldice(interaction: nextcord.Interaction):
     await interaction.send(f"*clatter* you rolled dice and you got {rolled}!") 
 
 @bot.slash_command(description="ban a user")
-async def ban(ctx: commands.Context, user: nextcord.Member, reason: str="No reason provided"):
+async def ban(ctx: nextcord.Interaction, user: nextcord.Member, reason: str="No reason provided"):
     await ctx.guild.ban(user, reason=reason)
     await ctx.send(f"{user} has been banned from the server! Reason: {reason}!")  
 
 @bot.slash_command(description="kick a user")
-async def kick(ctx: commands.Context, user: nextcord.Member, reason: str="No reason provided"):
+async def kick(ctx: nextcord.Interaction, user: nextcord.Member, reason: str="No reason provided"):
     await ctx.guild.kick(user, reason=reason)
     await ctx.send(f"{user} has been kicked from the server! Reason: {reason}!") 
 
