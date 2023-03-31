@@ -100,7 +100,7 @@ async def eightball(ctx, question: str):
     await ctx.send(random.choice(responses))
 
 @bot.slash_command(name="userinfo", description="Get detailed information about a user.")
-async def userinfo(ctx: nextcord.InteractionType, user: nextcord.Member = None):
+async def userinfo(ctx: nextcord.Interaction, user: nextcord.Member = None):
     if user is None:
         user = ctx.user
     
