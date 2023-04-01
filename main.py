@@ -73,7 +73,7 @@ async def kick(ctx: nextcord.Interaction, user: nextcord.Member, reason: str="No
      
 @bot.slash_command(description="Retrieves the avatar of a user.")
 async def avatar(ctx, user: nextcord.Member = None):
-    user = user or ctx.author
+    user = user or ctx.user
     avatar_url = user.avatar.url
     await ctx.send(avatar_url)
 
