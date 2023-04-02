@@ -145,5 +145,19 @@ async def mute(ctx: nextcord.Interaction, user: nextcord.Member):
     else:
         await ctx.send("You do not have permission to use this command.")
 
+          
+@bot.slash_command()
+async def unmute(ctx: nextcord.Interaction, user: nextcord.Member):
+    if ctx.user.guild_permissions.administrator: 
+        try:             
+            await user.edit(mute=False)
+        except:
+            await ctx.send("user is not connected to any voice channel.")
+        else:           
+            await ctx.send(f"{user.display_name} has been unmuted.")
+    else:
+        await ctx.send("You do not have permission to use this command.")
+          
 
+          
 bot.run("YOUR_BOT_TOKEN") # replace with your bot's token
