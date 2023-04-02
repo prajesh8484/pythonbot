@@ -133,5 +133,17 @@ async def userinfo(ctx: nextcord.Interaction, user: nextcord.Member = None):
     embed.add_field(name="Activity", value=user.activity, inline=False)
     await ctx.send(embed=embed)
 
-          
+@bot.slash_command()
+async def mute(ctx: nextcord.Interaction, user: nextcord.Member):
+    if ctx.user.guild_permissions.administrator: 
+        try:             
+            await user.edit(mute=True)
+        except:
+            await ctx.send("user is not connected to any voice channel.")
+        else:           
+            await ctx.send(f"{user.display_name} has been muted.")
+    else:
+        await ctx.send("You do not have permission to use this command.")
+
+
 bot.run("YOUR_BOT_TOKEN") # replace with your bot's token
