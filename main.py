@@ -33,6 +33,13 @@ async def dog(interaction: nextcord.Interaction):
     image_link = response.json()["message"]
     await interaction.response.send_message(image_link)
 
+@bot.slash_command(description="meow")
+async def cat(ctx: nextcord.Interaction):
+    response = requests.get("https://api.thecatapi.com/v1/images/search")
+    data = response.json()
+    cat_url = data[0]['url']
+    await ctx.send(cat_url)
+
 @bot.slash_command(description="sends a message to this channel")
 async def send(interaction: nextcord.Interaction, text: str):
     await interaction.response.send_message(f"{text}")
