@@ -33,7 +33,7 @@ This is a general purpose Discord bot built with [Nextcord](https://github.com/n
 launch your terminal or your Command Prompt
 .
 
-Before running the bot you will need to install all the requirements with this command:
+Before running the bot install all the requirements with this command:
 
 ```
 python -m pip install -r requirements.txt
