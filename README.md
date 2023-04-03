@@ -27,6 +27,7 @@ This is a general purpose Discord bot built with [Nextcord](https://github.com/n
 * Replace:
    * `YOUR_CHANNEL_ID` to channel id, [here](https://support.discord.com/hc/en-us/articles/206346498-Where-can-I-find-my-User-Server-Message-ID-) how to get channel id
    * `YOUR_BOT_TOKEN` to bot token 
+   * `YOUR_TIME_ZONE` to time zone (e.g. `'Europe/London'`)
 ## Starting the bot
 
 launch your terminal or your Command Prompt
