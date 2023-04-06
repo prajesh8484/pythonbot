@@ -49,3 +49,7 @@ Contributions to the project are welcome! If you have a feature or improvement t
 
 ## License
 This bot is released under the MIT License. See the [LICENSE.md](LICENSE.md) file for details.
+
+## Built With
+
+* [Python 3.10.6](https://www.python.org/downloads/release/python-3106/)
