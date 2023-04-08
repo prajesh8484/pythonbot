@@ -44,6 +44,14 @@ async def cat(ctx: nextcord.Interaction):
 async def send(interaction: nextcord.Interaction, text: str):
     await interaction.response.send_message(f"{text}")
 
+@bot.slash_command(name="nickname", description="Change your nickname in the server")
+async def nickname(ctx: nextcord.Interaction, nickname: str):
+    try:
+        await ctx.user.edit(nick=nickname)
+        await ctx.send(f"Your nickname has been changed to {nickname}")
+    except nextcord.errors.Forbidden:
+        await ctx.send("I don't have permission to change your nickname.")
+
 @bot.slash_command(description="get current time")
 async def timenow(interaction: nextcord.Interaction):
     now = datetime.datetime.now()
