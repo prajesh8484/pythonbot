@@ -165,7 +165,15 @@ async def unmute(ctx: nextcord.Interaction, user: nextcord.Member):
             await ctx.send(f"{user.display_name} has been unmuted.")
     else:
         await ctx.send("You do not have permission to use this command.")
-          
 
+
+@bot.slash_command(name="announce",description="Announce a message in a specific channel")
+async def announce(ctx: nextcord.Interaction, channel: nextcord.TextChannel, message: str):
+    if ctx.user.guild_permissions.administrator:
+        await channel.send(f":loudspeaker: Announcement : \n@everyone {message}")
+    else:
+        await ctx.send("You don't have the necessary permissions to use this command.")
+
+          
           
 bot.run("YOUR_BOT_TOKEN") # replace with your bot's token
