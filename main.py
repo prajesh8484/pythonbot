@@ -121,8 +121,8 @@ async def userinfo(ctx: nextcord.Interaction, user: nextcord.Member = None):
     
     # Get information about the user
     username = str(user)
-    created_at = user.created_at.strftime("%Y-%m-%d \n*%H:%M:%S* UTC")
-    joined_at = user.joined_at.strftime("%Y-%m-%d \n*%H:%M:%S* UTC")
+    created_at = user.created_at.strftime("%Y-%m-%d \n*%H:%M:%S*  UTC")
+    joined_at = user.joined_at.strftime("%Y-%m-%d \n*%H:%M:%S*  UTC")
     roles = [role.mention for role in user.roles if role != ctx.guild.default_role]
     if len(roles) == 0:
         roles = ["None"]
