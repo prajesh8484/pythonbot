@@ -67,7 +67,7 @@ async def ping(ctx):
     start_time = time.monotonic()
     message = await ctx.send("Pong!")
     end_time = time.monotonic()
-    await message.edit(content=f"Pong! Response time: {round((end_time - start_time) * 1000)} ms")
+    await message.edit(content=f"Pong! :ping_pong: Response time: {round((end_time - start_time) * 1000)} ms")
      
 
 @bot.slash_command(description="rolle's dice")
