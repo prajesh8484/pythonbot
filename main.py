@@ -73,7 +73,7 @@ async def ping(ctx):
 @bot.slash_command(description="rolle's dice")
 async def rolldice(interaction: nextcord.Interaction):
     rolled = random.randint(1, 6)
-    await interaction.send(f"*clatter* you rolled dice and you got {rolled}!") 
+    await interaction.send(f"*clatter*  you rolled dice and you got {rolled}!") 
 
 @bot.slash_command(description="ban a user")
 async def ban(ctx: nextcord.Interaction, user: nextcord.Member, reason: str="No reason provided"):
