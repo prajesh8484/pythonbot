@@ -32,9 +32,9 @@ This is a general purpose Discord bot built with [Nextcord](https://github.com/n
 ## Starting the bot
 
 launch your terminal or your Command Prompt
-.
 
-Before running the bot install all the requirements with this command:
+
+Before running the bot install all the requirements with this command :
 
 ```
 python -m pip install -r requirements.txt
@@ -46,7 +46,7 @@ After that you can start it with
 python main.py
 ```
 ## Contributing
-Contributions to the project are welcome! If you have a feature or improvement to suggest, simply open an issue or pull request on GitHub.
+Contributions to the project are welcome! If you have a feature or improvement to suggest, simply open an issue or pull request.
 
 ## License
 This bot is released under the MIT License. See the [LICENSE.md](LICENSE.md) file for details.
