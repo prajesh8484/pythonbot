@@ -1,3 +1,5 @@
 nextcord
 requests
 pytz
+firebase-admin
+python-dotenv

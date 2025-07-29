@@ -1,0 +1,6 @@
+.git/
+__pycache__/
+.env
+.venv/
+firebase_credentials.json
+.vscode/

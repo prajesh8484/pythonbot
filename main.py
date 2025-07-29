@@ -1,14 +1,14 @@
 import nextcord
 from nextcord.ext import commands
-import requests
-import json
+import aiohttp
 import datetime
-import asyncio
 import pytz
 import random
 import time
+import os
+from dotenv import load_dotenv
 
-
+load_dotenv()
 
 intents = nextcord.Intents.default()
 intents.members = True
@@ -17,6 +17,16 @@ intents.message_content = True
 bot = commands.Bot(command_prefix="!", description="My Bot", intents=intents)
 
 
+for filename in os.listdir('./cogs'):
+    if filename.endswith('.py'):
+        bot.load_extension(f'cogs.{filename[:-3]}')
+
+@bot.event
+async def on_command_error(ctx, error):
+    if isinstance(error, commands.CommandNotFound):
+        await ctx.send("Command not found.")
+    else:
+        await ctx.send(f"An error occurred: {error}")
 
 @bot.event
 async def on_ready():
@@ -29,16 +39,23 @@ async def hello(interaction: nextcord.Interaction):
 
 @bot.slash_command(description="bow")
 async def dog(interaction: nextcord.Interaction):
-    response = requests.get("https://dog.ceo/api/breeds/image/random")
-    image_link = response.json()["message"]
-    await interaction.response.send_message(image_link)
+    async with aiohttp.ClientSession() as session:
+        async with session.get("https://dog.ceo/api/breeds/image/random") as response:
+            if response.status == 200:
+                data = await response.json()
+                await interaction.response.send_message(data['message'])
+            else:
+                await interaction.response.send_message("Could not fetch a dog image.")
 
 @bot.slash_command(description="meow")
 async def cat(ctx: nextcord.Interaction):
-    response = requests.get("https://api.thecatapi.com/v1/images/search")
-    data = response.json()
-    cat_url = data[0]['url']
-    await ctx.send(cat_url)
+    async with aiohttp.ClientSession() as session:
+        async with session.get("https://api.thecatapi.com/v1/images/search") as response:
+            if response.status == 200:
+                data = await response.json()
+                await ctx.send(data[0]['url'])
+            else:
+                await ctx.send("Could not fetch a cat image.")
 
 @bot.slash_command(description="sends a message to this channel")
 async def send(interaction: nextcord.Interaction, text: str):
@@ -56,24 +73,82 @@ async def nickname(ctx: nextcord.Interaction, nickname: str):
 async def timenow(interaction: nextcord.Interaction):
     now = datetime.datetime.now()
     current_time = now.strftime("%H:%M:%S")
-    ist = pytz.timezone('YOUR_TIME_ZONE')  #e.g. America/New_York
+    ist = pytz.timezone('Asia/Kolkata') 
     datetime_ist = datetime.datetime.now(ist)
     current_time = datetime_ist.strftime("%H:%M:%S")
     await interaction.response.send_message(f"Current Time is {current_time}")
 
 
 @bot.slash_command(description="pong")
-async def ping(ctx):
+async def ping(ctx: nextcord.Interaction):
     start_time = time.monotonic()
-    message = await ctx.send("Pong!")
+    message = await ctx.send("Pinging...")
     end_time = time.monotonic()
-    await message.edit(content=f"Pong! :ping_pong: Response time: {round((end_time - start_time) * 1000)} ms")
+    
+    latency = bot.latency * 1000  
+    response_time = (end_time - start_time) * 1000  
+    
+    embed = nextcord.Embed(title="Pong!", color=nextcord.Color.green())
+    embed.add_field(name="Websocket Latency", value=f"{latency:.2f} ms", inline=False)
+    embed.add_field(name="Response Time", value=f"{response_time:.2f} ms", inline=False)
+    
+    await message.edit(content=None, embed=embed)
      
 
-@bot.slash_command(description="rolle's dice")
+@bot.slash_command(description="Rolls a standard six-sided die.")
 async def rolldice(interaction: nextcord.Interaction):
-    rolled = random.randint(1, 6)
-    await interaction.send(f"*clatter*  you rolled dice and you got {rolled}!") 
+    """Rolls a die and shows the result with ASCII art."""
+    roll = random.randint(1, 6)
+    dice_art = {
+        1: "```\n+-------+\n|       |\n|   o   |\n|       |\n+-------+\n```",
+        2: "```\n+-------+\n| o     |\n|       |\n|     o |\n+-------+\n```",
+        3: "```\n+-------+\n| o     |\n|   o   |\n|     o |\n+-------+\n```",
+        4: "```\n+-------+\n| o   o |\n|       |\n| o   o |\n+-------+\n```",
+        5: "```\n+-------+\n| o   o |\n|   o   |\n| o   o |\n+-------+\n```",
+        6: "```\n+-------+\n| o   o |\n| o   o |\n| o   o |\n+-------+\n```"
+    }
+    embed = nextcord.Embed(
+        title="Dice Roll",
+        description=f"🎲 You rolled a **{roll}**!",
+        color=nextcord.Color.from_rgb(255, 255, 255)
+    )
+    embed.add_field(name="Result", value=dice_art[roll], inline=False)
+    await interaction.send(embed=embed)
+
+@bot.slash_command(description="Tosses a coin and displays the result with ASCII art.")
+async def cointoss(interaction: nextcord.Interaction):
+    import random
+
+    outcome = random.choice(["Heads", "Tails"])
+    coin_art = {
+        "Heads": (
+            "```\n"
+            "+------+\n"
+            "|      |\n"
+            "|   H  |\n"
+            "|      |\n"
+            "+------+\n"
+            "```"
+        ),
+        "Tails": (
+            "```\n"
+            "+------+\n"
+            "|      |\n"
+            "|   T  |\n"
+            "|      |\n"
+            "+------+\n"
+            "```"
+        )
+    }
+    embed = nextcord.Embed(
+        title="🪙 Coin Toss Result",
+        description=f"🎲 The coin landed on **{outcome}**!",
+        color=nextcord.Color.gold()
+    )
+    embed.add_field(name="Visual", value=coin_art[outcome], inline=False)
+    embed.set_footer(text="Use /cointoss again to try your luck!")
+    await interaction.send(embed=embed)
+
 
 @bot.slash_command(description="ban a user")
 async def ban(ctx: nextcord.Interaction, user: nextcord.Member, reason: str="No reason provided"):
@@ -91,12 +166,8 @@ async def avatar(ctx, user: nextcord.Member = None):
     user = user or ctx.user
     avatar_url = user.avatar.url
     await ctx.send(avatar_url)
-
-
      
-@bot.command()
-async def sendtochannel(ctx, text: str):
-    channel = bot.get_channel(YOUR_CHANNEL_ID)
+async def sendtochannel(ctx, channel: nextcord.TextChannel, text: str):
     await channel.send(text)
 
 @bot.command()
@@ -128,7 +199,7 @@ async def userinfo(ctx: nextcord.Interaction, user: nextcord.Member = None):
         roles = ["None"]
     user_id = str(user.id)
     avatar_url = user.avatar.url
-    
+    activity = str(user.activity) if user.activity else "None"
 
     embed = nextcord.Embed(title="User Information", color=0x00ff00)
     embed.set_thumbnail(url=avatar_url)
@@ -138,7 +209,7 @@ async def userinfo(ctx: nextcord.Interaction, user: nextcord.Member = None):
     embed.add_field(name="Roles", value=", ".join(roles), inline=False)
     embed.add_field(name="Status", value=user.status, inline=False)
     embed.add_field(name="User ID", value=user_id, inline=False)
-    embed.add_field(name="Activity", value=user.activity, inline=False)
+    embed.add_field(name="Activity", value=activity, inline=False)
     await ctx.send(embed=embed)
 
 @bot.slash_command()
@@ -176,4 +247,4 @@ async def announce(ctx: nextcord.Interaction, channel: nextcord.TextChannel, mes
 
           
           
-bot.run("YOUR_BOT_TOKEN") # replace with your bot's token
+bot.run(os.getenv("BOT_TOKEN"))
