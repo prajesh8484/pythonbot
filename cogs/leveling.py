@@ -30,7 +30,7 @@ class Leveling(commands.Cog):
         if user_data:
             embed = nextcord.Embed(title=f"{interaction.user.name}'s Level", color=nextcord.Color.blue())
             embed.add_field(name="Level", value=user_data['level'])
-            embed.add_field(name="Experience", value=user_data['exp'])
+            embed.add_field(name="Exp", value=user_data['exp'])
             await interaction.response.send_message(embed=embed)
         else:
             await interaction.response.send_message("You haven't sent any commands yet!")

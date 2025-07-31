@@ -9,7 +9,7 @@
 <a href="https://github.com/prajesh8484/pythonbot/blob/3229b471a5772099e285e18282439e8b061ae9ba/LICENSE.md"><img src="https://img.shields.io/github/license/prajesh8484/pythonbot"></a>
 </p>
 
-This is a general purpose Discord bot built with [Nextcord](https://github.com/nextcord/nextcord)(A Python wrapper for the Discord API). The bot is designed to be easily customizable and extendable, with a modular architecture that allows for the addition of new features and commands. 
+This is a general purpose Discord bot built with [Firebase](https://firebase.google.com/) & [Nextcord](https://github.com/nextcord/nextcord) (A Python wrapper for the Discord API). The bot is designed to be easily customizable and extendable, with a modular architecture that allows for the addition of new features and commands. 
 
 ## How to setup
 
@@ -25,10 +25,16 @@ This is a general purpose Discord bot built with [Nextcord](https://github.com/n
   allow necessary permissions your bot needs that it can be get at the bottom of a this
   page https://discord.com/developers/applications/YOUR_APPLICATION_ID_HERE/bot)
 
-* Replace:
-   * `YOUR_CHANNEL_ID` to channel id, [here](https://support.discord.com/hc/en-us/articles/206346498-Where-can-I-find-my-User-Server-Message-ID-) how to get channel id
-   * `YOUR_BOT_TOKEN` to bot token 
-   * `YOUR_TIME_ZONE` to time zone (e.g. `'Europe/London'`)
+* Create a `.env` file in the root directory of the project and add the following variables:
+  ```
+  BOT_TOKEN=YOUR_BOT_TOKEN
+  FIREBASE_DATABASE_URL=YOUR_FIREBASE_DATABASE_URL
+  ```
+* Create a `firebase_credentials.json` file in the root directory of the project and add your firebase credentials.
+  * You can get your firebase credentials from [here](https://console.firebase.google.com/)
+  * Go to your project settings and then to service accounts and generate a new private key.
+  * This will download a json file, rename it to `firebase_credentials.json` and place it in the root directory of the project.
+
 ## Starting the bot
 
 launch your terminal or your Command Prompt
@@ -53,4 +59,4 @@ This bot is released under the MIT License. See the [LICENSE.md](LICENSE.md) fil
 
 ## Built With
 
-* [Python 3.10.6](https://www.python.org/downloads/release/python-3106/)
+* [Python 3.13.1](https://www.python.org/downloads/release/python-3106/)

@@ -190,7 +190,6 @@ async def userinfo(ctx: nextcord.Interaction, user: nextcord.Member = None):
     if user is None:
         user = ctx.user
     
-    # Get information about the user
     username = str(user)
     created_at = user.created_at.strftime("%Y-%m-%d \n*%H:%M:%S*  UTC")
     joined_at = user.joined_at.strftime("%Y-%m-%d \n*%H:%M:%S*  UTC")
